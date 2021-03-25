@@ -1,26 +1,28 @@
-
 <template>
-  <div>
-    <h1 class="text-4xl text-white bg-black">
-      {{name}}
-    </h1>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
-<script lang="ts">
-  import Vue from "vue";
+<script>
+import HelloWorld from './components/HelloWorld.vue'
 
-  export default Vue.extend({
-    data: function() {
-      return {
-        name: 'Hello World!',
-      }
-    },
-  });
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
 </script>
 
-<style global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
