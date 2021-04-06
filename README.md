@@ -29,3 +29,6 @@ app.router.add_static('/vue', 'plugins/vue/templates/vue', append_version=True)
 app.router.add_route('GET', '/plugin/vue/gui', vue_gui.splash)
 ```
 3. Make sure you have the files {{plugin_name}}_gui.py (which should call your template), {{plugin_name}}_api.py, and {{plugin_name}}_svc.py. 
+4. To run this vue plugin app, you have two options:
+    1. run the standalone app in development mode, using ```npm run serve``` command inside the plugin directory
+    2. run the app as a plugin inside the CALDERA app, using ```python server.py --fresh``` (add ```--log``` and ```DEBUG``` for verbose descriptions)
