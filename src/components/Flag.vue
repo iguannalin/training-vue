@@ -2,7 +2,15 @@
   <div class="border-2 rounded font-sans" v-bind:class="flag.completed ? 'border-caldera-green' : 'border-caldera-red'">
     <div class="lg:text-2xl md:text-lg sm:text-base flex justify-center p-2 align-center"
          v-bind:class="flag.completed ? 'bg-caldera-green' : 'bg-caldera-red'">
-      <p class=" flex w-10/12 text-lg text-colors-white justify-start text-left">{{ flag.name }}</p>
+      <div class="flex justify-start items-center w-10/12">
+        <span class="w-6 mr-2 text-caldera-grayish">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
+                  clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <p class="text-lg text-colors-white justify-start text-left">{{ flag.name }}</p>
+      </div>
       <div class="w-2/12 flex justify-end">
         <span v-if="flag.completed" class="w-4 flex align-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,7 +28,7 @@
     </div>
     <div class="flex flex-col justify-center p-2 text-base break-words">
       <div>
-        <div>
+        <div class="text-left">
           <p>{{ flag.challenge }}</p>
         </div>
         <div class="flex justify-center p-2">
@@ -35,7 +43,8 @@
         <p>{{ flag.extra_info }}</p>
         <div v-if="flag.code.includes('text-entry')">
           <label v-bind:for="flag.code">Write text here:</label>
-          <input v-bind:disabled="flag.completed" class="text-colors-black pl-1 pr-2" v-bind:id="flag.code" placeholder="type here"
+          <input v-bind:disabled="flag.completed" class="text-colors-black pl-1 pr-2" v-bind:id="flag.code"
+                 placeholder="type here"
                  v-on:input="onTextInput"/>
         </div>
         <div class="flex justify-center p-2">

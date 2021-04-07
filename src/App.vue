@@ -7,7 +7,7 @@
         <div class="flex justify-center items-center mt-2">
           <div class="flex flex-col justify-center items-center p-2" v-for="(cert, index) in certificateTypes"
                :key="index">
-            <button class="w-24 hover:bg-caldera-red rounded" v-bind:value="selectedCert"
+            <button class="w-24 hover:bg-caldera-red rounded pb-2" v-bind:value="selectedCert"
                     v-on:click="selectedCert = cert">
               <!--              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">-->
               <!--                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>-->
@@ -16,7 +16,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <span class="text-sm">{{ cert }}</span>
+              <span class="text-sm pb-1">{{ cert }}</span>
             </button>
           </div>
         </div>
@@ -26,7 +26,7 @@
       <div>
         <div class="flex justify-between mt-2">
           <div class="flex flex-row items-center">
-            <h2 class="text-colors-white text-2xl">Training: {{ selectedCert }}</h2>
+            <h2 class="text-left text-colors-white text-2xl">Training: {{ selectedCert }}</h2>
             <div class="flex pl-5 pr-5">
               <button class="flex flex-col sm:flex-row items-center justify-center hover:bg-caldera-red rounded"
                       v-bind:value="selectedCert"
@@ -62,7 +62,7 @@
         </div>
       </div>
       <div class="flex justify-center items-center flex-wrap text-colors-white mt-3 mb-2">
-        <h3 class="text-lg">Badges: </h3>
+        <h3 class="text-lg mr-1">Badges:</h3>
         <div class="flex justify-center items-center flex-col hover:bg-caldera-red rounded" v-for="(badge, index) in badgeList" :key="index">
           <button class="flex flex-col justify-center items-center text-base text-colors-white mt-3 p-1 ml-1 mr-1 w-20"
                   v-bind:class="{'font-bold': selectedBadge === badge}" v-bind:value="selectedBadge"
