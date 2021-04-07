@@ -2,7 +2,7 @@
   <div class="border-2 rounded font-sans" v-bind:class="flag.completed ? 'border-caldera-green' : 'border-caldera-red'">
     <div class="lg:text-2xl md:text-lg sm:text-base flex justify-center p-2 align-center"
          v-bind:class="flag.completed ? 'bg-caldera-green' : 'bg-caldera-red'">
-      <p class=" flex w-10/12 text-lg text-colors-white justify-start">{{ flag.name }}</p>
+      <p class=" flex w-10/12 text-lg text-colors-white justify-start text-left">{{ flag.name }}</p>
       <div class="w-2/12 flex justify-end">
         <span v-if="flag.completed" class="w-4 flex align-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -31,7 +31,7 @@
           </button>
         </div>
       </div>
-      <div class="flex flex-col justify-center" v-if="showMore">
+      <div class="flex flex-col justify-center text-left" v-if="showMore">
         <p>{{ flag.extra_info }}</p>
         <div v-if="flag.code.includes('text-entry')">
           <label v-bind:for="flag.code">Write text here:</label>

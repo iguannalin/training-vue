@@ -61,13 +61,21 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center items-center flex-wrap text-caldera-brown mt-2 mb-2">
-        <h3 class="text-lg text-caldera-brown">Badges: </h3>
-        <div class="flex justify-center flex-col text-caldera-brown" v-for="(badge, index) in badgeList" :key="index">
-          <!--TODO get badge icon-->
-          <!--<div><img v-bind:src="badge.icon"</div>-->
-          <button class="text-base text-caldera-brown pl-1 pr-1 hover:underline" v-bind:class="{'font-bold': selectedBadge === badge}" v-bind:value="selectedBadge"
-                  v-on:click="(selectedBadge === badge) ? selectedBadge = '' : selectedBadge = badge">{{ badge.name }}
+      <div class="flex justify-center items-center flex-wrap text-colors-white mt-3 mb-2">
+        <h3 class="text-lg">Badges: </h3>
+        <div class="flex justify-center items-center flex-col hover:bg-caldera-red rounded" v-for="(badge, index) in badgeList" :key="index">
+          <button class="flex flex-col justify-center items-center text-base text-colors-white mt-3 p-1 ml-1 mr-1 w-20"
+                  v-bind:class="{'font-bold': selectedBadge === badge}" v-bind:value="selectedBadge"
+                  v-on:click="(selectedBadge === badge) ? selectedBadge = '' : selectedBadge = badge">
+            <span class="flex flex-col justify-center items-center">
+              <span class="z-0 absolute w-14 fill-current">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke="currentColor"><path
+                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+              <img v-bind:alt="badge.name" class="w-6 z-10" v-bind:src="badge.iconSrc"/>
+            </span>
+            <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4">{{ badge.name }}</span>
           </button>
         </div>
       </div>
@@ -140,7 +148,7 @@ export default {
       for (const badgeIndex in data.badges) {
         const badge = data.badges[badgeIndex];
         console.log('BADGE', badge);
-        this.badgeList.push(badge);
+        this.badgeList.push({...badge, iconSrc: `/training/img/badges/${badge.name}.png`});
         for (const flagIndex in badge.flags) {
           const flag = badge.flags[flagIndex]
           this.flagList.push({...flag, badge_name: badge.name, cert_name: this.selectedCert});
