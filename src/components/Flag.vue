@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 rounded font-sans flex flex-col justify-between"
+  <div class="border-2 rounded font-sans flex flex-col justify-between min-h-72"
        v-bind:class="[flag.completed ? 'border-caldera-green' : 'border-caldera-red transition-all', showMore ? '' : 'h-72']">
     <div class="flex flex-col justify-start overflow-hidden">
       <div class="lg:text-2xl md:text-lg sm:text-base flex justify-center p-2 align-center"
@@ -81,7 +81,6 @@ export default {
   methods: {
     onTextInput: function (e) {
       this.flag.completed = (this.flag.answer && this.flag.answer === e.target.value);
-      console.log('text entered', e.target.id, e.target.value, 'bool', this.flag.answer === e.target.value);
     }
   }
 }

@@ -18,7 +18,6 @@ class VueGUI(BaseWorld):
         self.auth_svc = services.get('auth_svc')
         self.log = logging.getLogger('vue_gui')
 
-    # TODO this still uses jinja templates to render--can we completely move away from jinja and expose a static folder?
     @template('vue.html')
     async def splash(self, request):
         return dict(name=self.name, description=self.description)

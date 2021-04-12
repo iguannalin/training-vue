@@ -5,6 +5,9 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         colors: {colors},
+        minHeight: {
+            '72': '18rem'
+        },
         extend: {
             colors: {
                 caldera: {
