@@ -2,7 +2,7 @@
   <div class="border-2 rounded font-sans flex flex-col justify-between min-h-72"
        v-bind:class="[flag.completed ? 'border-caldera-green' : 'border-caldera-red transition-all', showMore ? '' : 'h-72']">
     <div class="flex flex-col justify-start overflow-hidden">
-      <div class="lg:text-2xl md:text-lg sm:text-base flex justify-center p-2 align-center"
+      <div class="lg:text-2xl md:text-lg sm:text-sm flex justify-center p-2 align-center"
            v-bind:class="flag.completed ? 'bg-caldera-green' : 'bg-caldera-red'">
         <div class="flex justify-start items-center w-11/12">
           <span class="w-6 mr-2 text-caldera-grayish">
@@ -29,11 +29,11 @@
           </p>
         </div>
       </div>
-      <div class="flex flex-col justify-center p-2 text-base break-words">
+      <div class="flex flex-col justify-center p-2 text-sm break-words">
         <div>
           <div class="flex flex-col justify-center text-left pl-2 pr-2">
-            <p class="text-base">{{ flag.challenge }}</p>
-            <p class="text-base">{{ flag.extra_info }}</p>
+            <p class="text-sm">{{ flag.challenge }}</p>
+            <p class="text-sm">{{ flag.extra_info }}</p>
             <div v-if="flag.code.includes('text-entry')">
               <label v-bind:for="flag.code">Write text here:</label>
               <input v-bind:disabled="flag.completed" class="text-colors-black pl-1 pr-2" v-bind:id="flag.code"
