@@ -31,7 +31,7 @@
         <!--  END TITLE -->
         <div class="flex flex-wrap flex-row">
           <!--  CERTIFICATES  -->
-          <div class="flex justify-start items-start flex-wrap text-colors-white mt-3 mb-2 p-1 w-5/12">
+          <div class="flex justify-start items-start flex-row flex-wrap text-colors-white mt-3 mb-2 p-1 w-5/12">
             <div class="flex flex-row justify-center">
               <label for="certificate-select" class="text-lg mt-2 mr-1">Certificates:</label>
               <div class="text-colors-black m-1">
@@ -41,10 +41,21 @@
                 </select>
               </div>
             </div>
+            <div class="mt-2 text-left">
+              <p>Completed badges: {{ completedBadges }} / {{ badgeList.length }}</p>
+              <p>Completed flags: {{ completedFlags }} / {{ flagList.length }}</p>
+              <div v-if="completedCertificate">
+                <label for="certificate-code">Certificate code:</label>
+                <input id="certificate-code" type="text" readonly class="text-colors-black rounded ml-1 pl-1 pr-1"
+                       v-bind:value="certificateCode"
+                       aria-label="Certificate code"/>
+              </div>
+            </div>
           </div>
           <!--  END CERTIFICATES  -->
           <!--  BADGES  -->
-          <div v-if="selectedCert" class="flex justify-start items-center flex-wrap text-colors-white mt-3 mb-2 p-1 w-7/12">
+          <div v-if="selectedCert"
+               class="flex justify-start items-center flex-wrap text-colors-white mt-3 mb-2 p-1 w-7/12">
             <div class="flex flex-row flex-wrap">
               <div class="flex justify-end items-start">
                 <h3 class="text-lg mt-2 mr-1">Badges:</h3>
@@ -101,7 +112,11 @@ export default {
       badgeList: [],
       flagList: [],
       visibleFlagList: [],
-      certificateTypes: ['User Certificate', 'Blue Certificate']
+      certificateTypes: ['User Certificate', 'Blue Certificate'],
+      completedFlags: 0,
+      completedBadges: 0,
+      completedCertificate: false,
+      certificateCode: ''
     }
   },
   watch: {
@@ -123,6 +138,10 @@ export default {
     resetData: function () {
       this.badgeList = [];
       this.flagList = [];
+      this.completedFlags = 0;
+      this.completedBadges = 0;
+      this.completedCertificate = false;
+      this.certificateCode = '';
     },
     getTraining: function () {
       fetch('/plugin/training/flags', {
@@ -142,17 +161,36 @@ export default {
     getFlags: function (data) {
       if (!data) return;
       this.resetData();
-      for (const badgeIndex in data.badges) {
-        const badge = data.badges[badgeIndex];
-        console.log('BADGE', badge);
-        this.badgeList.push({...badge, iconSrc: `/training/img/badges/${badge.name}.png`});
-        for (const flagIndex in badge.flags) {
-          const flag = badge.flags[flagIndex]
+      let certificateCodeList = [];
+
+      data.badges.forEach((badge) => {
+        let isBadgeCompleted = false;
+        let badgeCompletedFlags = 0;
+        badge.flags.forEach((flag) => {
+          if (flag.completed) badgeCompletedFlags += 1;
           this.flagList.push({...flag, badge_name: badge.name, cert_name: this.selectedCert});
+          certificateCodeList.push(flag.code);
+        });
+
+        if (badgeCompletedFlags === badge.flags.length) {
+          this.completedBadges += 1;
+          isBadgeCompleted = true;
         }
+
+        this.badgeList.push({...badge, completed: isBadgeCompleted, iconSrc: `/training/img/badges/${badge.name}.png`});
+        this.completedFlags += badgeCompletedFlags;
+      });
+
+      if (this.completedBadges === this.badgeList.length) {
+        this.completedCertificate = true;
+        this.certificateCode = this.getCertificateCode(certificateCodeList);
       }
-      console.log('flags: ', this.flagList);
       this.visibleFlagList = this.flagList;
+    },
+    getCertificateCode: function (certificateCodeList) {
+      let code = certificateCodeList.sort((a, b) => a.toString().length - b.toString().length);
+      code = code.join(' ');
+      return btoa(code);
     }
   }
 }
