@@ -31,7 +31,7 @@
         <!--  END TITLE -->
         <div class="flex flex-wrap flex-row">
           <!--  CERTIFICATES  -->
-          <div class="flex justify-start items-start flex-row flex-wrap text-colors-white mt-3 mb-2 p-1 w-5/12">
+          <div class="flex justify-start items-start flex-col flex-wrap text-colors-white mt-3 mb-2 p-1 w-5/12">
             <div class="flex flex-row justify-center">
               <label for="certificate-select" class="text-lg mt-2 mr-1">Certificates:</label>
               <div class="text-colors-black m-1">
@@ -45,8 +45,9 @@
               <p>Completed badges: {{ completedBadges }} / {{ badgeList.length }}</p>
               <p>Completed flags: {{ completedFlags }} / {{ flagList.length }}</p>
               <div v-if="completedCertificate">
+                  <span id="confetti-container"><span class="confetti" style="transform: translate(100px, 2px); width: 8.25959px; height: 8.25959px; background-color: rgb(108, 220, 254);"></span><span class="confetti" style="transform: translate(86px, 52px); width: 8.02304px; height: 8.02304px; background-color: rgb(55, 223, 159);"></span><span class="confetti" style="transform: translate(48px, 87px); width: 5.3366px; height: 5.3366px; background-color: rgb(104, 74, 179);"></span><span class="confetti" style="transform: translate(-2px, 100px); width: 10.7225px; height: 10.7225px; background-color: rgb(245, 163, 199);"></span><span class="confetti" style="transform: translate(-52px, 86px); width: 8.9616px; height: 8.9616px; background-color: rgb(242, 107, 60);"></span><span class="confetti" style="transform: translate(-87px, 48px); width: 7.48456px; height: 7.48456px; background-color: rgb(241, 80, 98);"></span><span class="confetti" style="transform: translate(-100px, -2px); width: 7.92002px; height: 7.92002px; background-color: rgb(254, 253, 223);"></span><span class="confetti" style="transform: translate(-86px, -52px); width: 6.73064px; height: 6.73064px; background-color: rgb(105, 192, 123);"></span><span class="confetti" style="transform: translate(-48px, -87px); width: 8.0038px; height: 8.0038px; background-color: rgb(183, 124, 168);"></span><span class="confetti" style="transform: translate(2px, -100px); width: 9.38486px; height: 9.38486px; background-color: rgb(108, 220, 254);"></span><span class="confetti" style="transform: translate(52px, -86px); width: 8.15545px; height: 8.15545px; background-color: rgb(55, 223, 159);"></span><span class="confetti" style="transform: translate(87px, -48px); width: 6.40678px; height: 6.40678px; background-color: rgb(104, 74, 179);"></span></span>
                 <label for="certificate-code">Certificate code:</label>
-                <input id="certificate-code" type="text" readonly class="text-colors-black rounded ml-1 pl-1 pr-1"
+                <input id="certificate-code" type="text" readonly class="text-colors-black rounded ml-1 pl-1 pr-1 w-auto"
                        v-bind:value="certificateCode"
                        aria-label="Certificate code"/>
               </div>
@@ -196,4 +197,28 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+#confetti-container {
+  position: fixed;
+  padding-left: 10%;
+}
+
+.confetti {
+  height: 5px;
+  width: 5px;
+  background-color: #d54343;
+  position: absolute;
+  transition: transform 2s ease-in-out;
+  animation: blinker 3s normal infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+</style>
