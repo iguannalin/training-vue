@@ -40,10 +40,11 @@
                      placeholder="type here"
                      v-on:input="onTextInput"/>
             </div>
-            <div class="flex justify-center p-2">
+            <div class="flex flex-col items-center p-2">
               <a class="hover:underline" target="_blank"
                  v-bind:href="`/plugin/training/solution-guides/certificates/${flag.cert_name}/badges/${flag.badge_name}/flags/${flag.name}`">View
                 Solution Guide</a>
+              <p class="italic">Badge: {{ flag.badge_name }}</p>
             </div>
           </div>
         </div>

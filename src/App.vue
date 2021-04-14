@@ -76,7 +76,7 @@
                       </span>
                       <img v-bind:alt="badge.name" class="w-6 z-10" v-bind:src="badge.iconSrc"/>
                     </span>
-                    <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4">{{ badge.name }}</span>
+                    <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4" v-bind:class="badge.completed ? 'bg-caldera-green' : ''">{{ badge.name }}</span>
                   </button>
                 </div>
               </div>
