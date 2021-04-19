@@ -45,9 +45,33 @@
               <p>Completed badges: {{ completedBadges }} / {{ badgeList.length }}</p>
               <p>Completed flags: {{ completedFlags }} / {{ flagList.length }}</p>
               <div v-if="completedCertificate">
-                  <span id="confetti-container"><span class="confetti" style="transform: translate(100px, 2px); width: 8.25959px; height: 8.25959px; background-color: rgb(108, 220, 254);"></span><span class="confetti" style="transform: translate(86px, 52px); width: 8.02304px; height: 8.02304px; background-color: rgb(55, 223, 159);"></span><span class="confetti" style="transform: translate(48px, 87px); width: 5.3366px; height: 5.3366px; background-color: rgb(104, 74, 179);"></span><span class="confetti" style="transform: translate(-2px, 100px); width: 10.7225px; height: 10.7225px; background-color: rgb(245, 163, 199);"></span><span class="confetti" style="transform: translate(-52px, 86px); width: 8.9616px; height: 8.9616px; background-color: rgb(242, 107, 60);"></span><span class="confetti" style="transform: translate(-87px, 48px); width: 7.48456px; height: 7.48456px; background-color: rgb(241, 80, 98);"></span><span class="confetti" style="transform: translate(-100px, -2px); width: 7.92002px; height: 7.92002px; background-color: rgb(254, 253, 223);"></span><span class="confetti" style="transform: translate(-86px, -52px); width: 6.73064px; height: 6.73064px; background-color: rgb(105, 192, 123);"></span><span class="confetti" style="transform: translate(-48px, -87px); width: 8.0038px; height: 8.0038px; background-color: rgb(183, 124, 168);"></span><span class="confetti" style="transform: translate(2px, -100px); width: 9.38486px; height: 9.38486px; background-color: rgb(108, 220, 254);"></span><span class="confetti" style="transform: translate(52px, -86px); width: 8.15545px; height: 8.15545px; background-color: rgb(55, 223, 159);"></span><span class="confetti" style="transform: translate(87px, -48px); width: 6.40678px; height: 6.40678px; background-color: rgb(104, 74, 179);"></span></span>
+                <span id="confetti-container"><span class="confetti"
+                                                    style="transform: translate(100px, 2px); width: 8.25959px; height: 8.25959px; background-color: rgb(108, 220, 254);"></span><span
+                    class="confetti"
+                    style="transform: translate(86px, 52px); width: 8.02304px; height: 8.02304px; background-color: rgb(55, 223, 159);"></span><span
+                    class="confetti"
+                    style="transform: translate(48px, 87px); width: 5.3366px; height: 5.3366px; background-color: rgb(104, 74, 179);"></span><span
+                    class="confetti"
+                    style="transform: translate(-2px, 100px); width: 10.7225px; height: 10.7225px; background-color: rgb(245, 163, 199);"></span><span
+                    class="confetti"
+                    style="transform: translate(-52px, 86px); width: 8.9616px; height: 8.9616px; background-color: rgb(242, 107, 60);"></span><span
+                    class="confetti"
+                    style="transform: translate(-87px, 48px); width: 7.48456px; height: 7.48456px; background-color: rgb(241, 80, 98);"></span><span
+                    class="confetti"
+                    style="transform: translate(-100px, -2px); width: 7.92002px; height: 7.92002px; background-color: rgb(254, 253, 223);"></span><span
+                    class="confetti"
+                    style="transform: translate(-86px, -52px); width: 6.73064px; height: 6.73064px; background-color: rgb(105, 192, 123);"></span><span
+                    class="confetti"
+                    style="transform: translate(-48px, -87px); width: 8.0038px; height: 8.0038px; background-color: rgb(183, 124, 168);"></span><span
+                    class="confetti"
+                    style="transform: translate(2px, -100px); width: 9.38486px; height: 9.38486px; background-color: rgb(108, 220, 254);"></span><span
+                    class="confetti"
+                    style="transform: translate(52px, -86px); width: 8.15545px; height: 8.15545px; background-color: rgb(55, 223, 159);"></span><span
+                    class="confetti"
+                    style="transform: translate(87px, -48px); width: 6.40678px; height: 6.40678px; background-color: rgb(104, 74, 179);"></span></span>
                 <label for="certificate-code">Certificate code:</label>
-                <input id="certificate-code" type="text" readonly class="text-colors-black rounded ml-1 pl-1 pr-1 w-auto"
+                <input id="certificate-code" type="text" readonly
+                       class="text-colors-black rounded ml-1 pl-1 pr-1 w-auto"
                        v-bind:value="certificateCode"
                        aria-label="Certificate code"/>
               </div>
@@ -61,7 +85,7 @@
               <div class="flex justify-end items-start">
                 <h3 class="text-lg mt-2 mr-1">Badges:</h3>
               </div>
-              <div class="flex flex-row flex-wrap w-10/12 items-start">
+              <div class="flex flex-row flex-wrap items-start">
                 <div class="flex justify-center items-center flex-col hover:bg-caldera-red rounded"
                      v-for="(badge, index) in badgeList" :key="index">
                   <button
@@ -74,9 +98,10 @@
                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                       </span>
-                      <img v-bind:alt="badge.name" class="w-6 z-10" v-bind:src="badge.iconSrc"/>
+                      <img v-bind:alt="badge.name" class="w-6 z-10" onerror="this.src='/vue/img/badges/defaultlock.png'" v-bind:src="badge.iconSrc"/>
                     </span>
-                    <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4" v-bind:class="badge.completed ? 'bg-caldera-green' : ''">{{ badge.name }}</span>
+                    <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4"
+                          v-bind:class="badge.completed ? 'bg-caldera-green' : ''">{{ badge.name }}</span>
                   </button>
                 </div>
               </div>
@@ -178,7 +203,7 @@ export default {
           isBadgeCompleted = true;
         }
 
-        this.badgeList.push({...badge, completed: isBadgeCompleted, iconSrc: `/training/img/badges/${badge.name}.png`});
+        this.badgeList.push({...badge, completed: isBadgeCompleted, iconSrc: `/vue/img/badges/${badge.name}.png`});
         this.completedFlags += badgeCompletedFlags;
       });
 
