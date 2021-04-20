@@ -13,6 +13,7 @@ module.exports = {
         extend: {
             colors: {
                 caldera: {
+                    primary: "var(--navbar-color)",
                     // red: '#C31135'
                     red: '#750b20',
                     reddish: '#AA324A',

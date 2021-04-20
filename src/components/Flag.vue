@@ -1,9 +1,9 @@
 <template>
   <div class="border-2 rounded font-sans flex flex-col justify-between min-h-72"
-       v-bind:class="[flag.completed ? 'border-caldera-green' : 'border-caldera-red transition-all', showMore ? '' : 'h-72']">
+       v-bind:class="[flag.completed ? 'border-caldera-green' : 'border-caldera-primary transition-all', showMore ? '' : 'h-72']">
     <div class="flex flex-col justify-start overflow-hidden">
       <div class="lg:text-2xl md:text-lg sm:text-sm flex justify-center p-2 align-center"
-           v-bind:class="flag.completed ? 'bg-caldera-green' : 'bg-caldera-red'">
+           v-bind:class="flag.completed ? 'bg-caldera-green' : 'bg-caldera-primary'">
         <div class="flex justify-start items-center w-11/12">
           <span class="w-6 mr-2 text-caldera-grayish">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-gradient-to-b via-caldera-grayish to-colors-black hover:bg-caldera-red">
+    <div class="bg-gradient-to-b via-caldera-grayish to-colors-black hover:bg-caldera-primary">
       <button v-if="!showMore" class="flex justify-center p-2 w-full" v-on:click="showMore = true">
         <span class="w-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

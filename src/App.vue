@@ -1,5 +1,5 @@
 <template>
-  <div class="flex border-caldera-red border-2 rounded-3xl m-5 p-6 text-colors-white font-sans bg-caldera-grayish">
+  <div class="flex border-caldera-primary border-2 rounded-3xl m-5 p-6 text-colors-white font-sans bg-caldera-grayish">
     <div class="flex justify-center flex-col w-full">
       <div>
         <!--  TITLE -->
@@ -10,18 +10,18 @@
               }}</span></h2>
           </div>
           <div class="flex flex-row justify-between">
-            <button class="w-6 hover:bg-caldera-red rounded">
+            <button class="w-6 hover:bg-caldera-primary rounded">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/>
               </svg>
             </button>
-            <button class="w-6 hover:bg-caldera-red rounded pl-1">
+            <button class="w-6 hover:bg-caldera-primary rounded pl-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </button>
-            <button class="w-6 hover:bg-caldera-red rounded pl-1">
+            <button class="w-6 hover:bg-caldera-primary rounded pl-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -85,8 +85,8 @@
               <div class="flex justify-end items-start">
                 <h3 class="text-lg mt-2 mr-1">Badges:</h3>
               </div>
-              <div class="flex flex-row flex-wrap items-start">
-                <div class="flex justify-center items-center flex-col hover:bg-caldera-red rounded"
+              <div class="flex flex-row flex-wrap items-start w-10/12">
+                <div class="flex justify-center items-center flex-col hover:bg-caldera-primary rounded"
                      v-for="(badge, index) in badgeList" :key="index">
                   <button
                       class="flex flex-col justify-center items-center text-base text-colors-white mt-3 p-1 ml-1 mr-1 w-20"
@@ -100,7 +100,7 @@
                       </span>
                       <img v-bind:alt="badge.name" class="w-6 z-10" onerror="this.src='/vue/img/badges/defaultlock.png'" v-bind:src="badge.iconSrc"/>
                     </span>
-                    <span class="hover:bg-caldera-red rounded pl-1 pr-1 text-xs mt-4"
+                    <span class="hover:bg-caldera-primary rounded pl-1 pr-1 text-xs mt-4"
                           v-bind:class="badge.completed ? 'bg-caldera-green' : ''">{{ badge.name }}</span>
                   </button>
                 </div>
