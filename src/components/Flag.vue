@@ -41,10 +41,10 @@
                      v-on:input="onTextInput"/>
             </div>
             <div class="flex flex-col items-center p-2">
-              <a class="hover:underline" target="_blank"
+              <a class="underline hover:text-colors-gray-500" target="_blank"
                  v-bind:href="`/plugin/training/solution-guides/certificates/${flag.cert_name}/badges/${flag.badge_name}/flags/${flag.name}`">View
                 Solution Guide</a>
-              <p class="italic">Badge: {{ flag.badge_name }}</p>
+              <p class="italic text-sm">Badge: {{ flag.badge_name }}</p>
             </div>
           </div>
         </div>
