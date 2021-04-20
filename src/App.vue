@@ -222,7 +222,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 #confetti-container {
   position: fixed;
   padding-left: 10%;
