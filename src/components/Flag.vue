@@ -1,10 +1,10 @@
 <template>
   <div class="border-2 rounded font-sans flex flex-col justify-between min-h-72"
-       v-bind:class="[flag.completed ? 'border-caldera-primary bg-caldera-primary' : 'border-caldera-pale transition-all', showMore ? '' : 'h-72']">
+       v-bind:class="[flag.completed ? 'border-caldera-primary bg-caldera-primary' : 'border-caldera-primary transition-all', showMore ? '' : 'h-72']">
     <div class="flex flex-col justify-start overflow-hidden">
-      <div class="lg:text-2xl md:text-lg sm:text-sm flex justify-center p-2 align-center"
-           v-bind:class="flag.completed ? 'bg-caldera-primary' : 'bg-caldera-pale'">
-        <div class="flex justify-start items-center w-11/12">
+      <div class="lg:text-2xl md:text-lg sm:text-sm flex justify-evenly p-2 align-center"
+           v-bind:class="flag.completed ? 'bg-caldera-primary' : 'bg-caldera-primary'">
+        <div class="flex justify-start items-center w-10/12">
           <span class="w-6 mr-2" v-bind:class="flag.completed ? 'text-caldera-yellow' : 'text-caldera-grayish'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd"
@@ -13,6 +13,19 @@
             </svg>
           </span>
           <p class="text-lg text-colors-white justify-start text-left">{{ flag.name }}</p>
+        </div>
+        <div class="flex justify-end items-center w-2/12">
+          <span class="flex flex-col justify-center items-center text-base text-colors-white p-1 ml-1 mr-1 w-20">
+                    <span class="flex flex-col justify-center items-center">
+                      <span class="z-0 absolute w-10 fill-current">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke="currentColor"><path
+                           stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                      </span>
+                      <img v-bind:alt="flag.badge_name" class="w-6 z-10" onerror="this.src='/vue/img/badges/defaultlock.png'"
+                           v-bind:src="flag.badge_icon"/>
+                    </span>
+          </span>
         </div>
       </div>
       <div class="flex flex-col justify-center p-2 text-sm break-words">
@@ -30,7 +43,6 @@
               <a class="underline hover:text-colors-gray-500" target="_blank"
                  v-bind:href="`/plugin/training/solution-guides/certificates/${flag.cert_name}/badges/${flag.badge_name}/flags/${flag.name}`">View
                 Solution Guide</a>
-              <p class="italic text-sm">Badge: {{ flag.badge_name }}</p>
             </div>
           </div>
         </div>

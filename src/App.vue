@@ -19,14 +19,17 @@
           </div>
           <div class="flex flex-row justify-between">
             <button class="w-6 hover:bg-caldera-primary rounded" v-on:click="isPluginMinimized = !isPluginMinimized">
-              <span v-if="isPluginMinimized"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                  viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-</svg></span>
-              <span v-if="!isPluginMinimized"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
+              <span v-if="isPluginMinimized">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+              </span>
+              <span v-if="!isPluginMinimized">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/>
-              </svg></span>
+              </svg>
+              </span>
             </button>
             <button class="w-6 hover:bg-caldera-primary rounded pl-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,30 +71,29 @@
           </div>
           <!--  END CERTIFICATES  -->
           <div class="flex flex-wrap flex-row">
-            <div v-if="selectedCert" class="text-colors-white mt-3 mb-2 p-1">
+            <div v-if="selectedCert" class="text-colors-white mt-3 mb-2 p-1 w-full">
               <!--  BADGES  -->
               <div class="flex flex-row flex-wrap">
-                <div class="flex items-start">
-                  <h3 class="text-lg mt-2 mr-1">Badges:</h3>
-                </div>
-                <div class="flex flex-row flex-wrap items-start">
-                  <div class="flex justify-center items-center flex-col hover:bg-caldera-primary rounded"
+                <div class="flex flex-row flex-wrap items-start w-full justify-evenly">
+                  <div class="flex items-center flex-col hover:bg-caldera-primary rounded"
                        v-for="(badge, index) in badgeList" :key="index">
                     <button
                         class="flex flex-col justify-center items-center text-base text-colors-white mt-3 p-1 ml-1 mr-1 w-20"
                         v-bind:class="{'font-bold': selectedBadge === badge}" v-bind:value="selectedBadge"
                         v-on:click="(selectedBadge === badge) ? selectedBadge = '' : selectedBadge = badge">
                     <span class="flex flex-col justify-center items-center">
-                      <span class="z-0 absolute w-14 fill-current">
+                      <span class="z-0 absolute w-14 fill-current" v-bind:class="badge.completed ? 'text-caldera-yellow' : ''">
                        <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke="currentColor"><path
                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                       </span>
                       <img v-bind:alt="badge.name" class="w-6 z-10" onerror="this.src='/vue/img/badges/defaultlock.png'"
-                           v-bind:src="badge.iconSrc"/>
+                           v-bind:src="badge.icon_src"/>
                     </span>
                       <span class="hover:bg-caldera-primary rounded pl-1 pr-1 text-xs mt-4"
-                            v-bind:class="badge.completed ? 'bg-caldera-green' : ''">{{ badge.name }}</span>
+                            v-bind:class="badge.completed ? 'bg-caldera-yellow text-caldera-grayish' : ''">
+                        {{ badge.name }}
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -99,11 +101,8 @@
               <!--  END BADGES  -->
               <!--  FLAGS STATUS -->
               <div class="flex flex-row flex-wrap">
-                <div class="flex items-start">
-                  <h3 class="text-lg mt-2 mr-1">Flags:</h3>
-                </div>
-                <div class="ml-9 flex flex-row flex-wrap items-end pb-1">
-                    <span v-for="(flag, index) in visibleFlagList" :key="index"
+                <div class="flex flex-row flex-wrap items-end w-full justify-center">
+                    <span v-for="(flag, index) in visibleFlagList" :key="index" class="p-2"
                           v-bind:class="flag.completed ? 'text-caldera-yellow' : 'text-colors-white'">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -200,11 +199,12 @@ export default {
       let certificateCodeList = [];
 
       data.badges.forEach((badge) => {
+        let iconSrc = `/vue/img/badges/${badge.name}.png`;
         let isBadgeCompleted = false;
         let badgeCompletedFlags = 0;
         badge.flags.forEach((flag) => {
           if (flag.completed) badgeCompletedFlags += 1;
-          this.flagList.push({...flag, badge_name: badge.name, cert_name: this.selectedCert});
+          this.flagList.push({...flag, badge_name: badge.name, badge_icon: iconSrc, cert_name: this.selectedCert});
           certificateCodeList.push(flag.code);
         });
 
@@ -213,7 +213,7 @@ export default {
           isBadgeCompleted = true;
         }
 
-        this.badgeList.push({...badge, completed: isBadgeCompleted, iconSrc: `/vue/img/badges/${badge.name}.png`});
+        this.badgeList.push({...badge, completed: isBadgeCompleted, icon_src: iconSrc});
         this.completedFlags += badgeCompletedFlags;
       });
 
