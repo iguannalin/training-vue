@@ -7,9 +7,10 @@
         <div class="flex justify-between mt-2">
           <div class="flex flex-row items-center">
             <label class="text-left text-colors-white text-2xl" for="training-cert-select">Training</label>
-            <span v-if="selectedCert">:
+            <span class="flex items-center" v-if="selectedCert">:
               <span class="text-colors-white text-2xl ml-1">
-                <select id="training-cert-select" class="h-auto rounded bg-caldera-grayish cursor-pointer" v-model="selectedCert">
+                <select id="training-cert-select" class="h-auto rounded bg-caldera-grayish cursor-pointer"
+                        v-model="selectedCert">
                   <option disabled value="">Choose a certificate</option>
                   <option v-for="(certificate, index) in certificateTypes" :key="index">{{ certificate }}</option>
                 </select>
@@ -45,7 +46,7 @@
           <!--  CERTIFICATES DROPDOWN -->
           <div class="flex flex-wrap flex-row" v-if="!selectedCert">
             <div class="text-colors-white mt-3 mb-2 p-1 w-5/12">
-              <div class="flex flex-row justify-center">
+              <div class="flex flex-row">
                 <label for="certificate-select" class="text-lg mt-2 mr-1">Choose a certificate:</label>
                 <div class="text-colors-black m-1">
                   <select id="certificate-select" class="p-2 h-auto rounded" v-model="selectedCert">
@@ -67,7 +68,7 @@
           </div>
           <!--  END CERTIFICATES  -->
           <div class="flex flex-wrap flex-row">
-            <div v-if="selectedCert" class="flex justify-start items-center flex-wrap text-colors-white mt-3 mb-2 p-1">
+            <div v-if="selectedCert" class="text-colors-white mt-3 mb-2 p-1">
               <!--  BADGES  -->
               <div class="flex flex-row flex-wrap">
                 <div class="flex items-start">
@@ -95,17 +96,20 @@
                   </div>
                 </div>
               </div>
-            <!--  END BADGES  -->
+              <!--  END BADGES  -->
               <!--  FLAGS STATUS -->
               <div class="flex flex-row flex-wrap">
                 <div class="flex items-start">
                   <h3 class="text-lg mt-2 mr-1">Flags:</h3>
                 </div>
                 <div class="ml-9 flex flex-row flex-wrap items-end pb-1">
-                    <span v-for="(flag, index) in flagList" :key="index" v-bind:class="flag.completed ? 'text-caldera-yellow' : 'text-colors-white'">
+                    <span v-for="(flag, index) in visibleFlagList" :key="index"
+                          v-bind:class="flag.completed ? 'text-caldera-yellow' : 'text-colors-white'">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
-</svg>
+                        <path fill-rule="evenodd"
+                              d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
+                              clip-rule="evenodd"/>
+                      </svg>
                     </span>
                 </div>
               </div>
