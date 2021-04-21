@@ -16,6 +16,7 @@ module.exports = {
                     primary: "var(--navbar-color)",
                     // red: '#C31135'
                     red: '#750b20',
+                    blue: '#191970',
                     reddish: '#AA324A',
                     // green: '#21770D', // the real green
                     green: '#0B7560',
