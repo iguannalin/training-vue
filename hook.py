@@ -5,7 +5,7 @@ from plugins.vue.app.vue_api import VueAPI
 name = 'Vue'
 description = 'Testing out a plugin with vue'
 address = '/plugin/vue/gui'
-access = BaseWorld.Access.RED
+# access = BaseWorld.Access.RED
 
 
 async def enable(services):
